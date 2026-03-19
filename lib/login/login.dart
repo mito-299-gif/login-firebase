@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login_flrebasee/register/register.dart';
-import 'package:login_flrebasee/student/student.dart';
 
 class login extends StatefulWidget {
   login({super.key});
