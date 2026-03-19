@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login_flrebasee/register/register.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login_flrebasee/student/student.dart';
 
 class login extends StatefulWidget {
@@ -12,22 +11,6 @@ class login extends StatefulWidget {
 
 class _loginState extends State<login> {
   bool _isObscured = true;
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  Future<void> loginUser() async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => student()),
-      );
-    } catch (e) {}
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +32,6 @@ class _loginState extends State<login> {
                   ),
                   SizedBox(height: 20),
                   TextField(
-                    controller: emailController,
                     decoration: InputDecoration(
                       labelText: "Email",
                       border: OutlineInputBorder(
@@ -60,7 +42,6 @@ class _loginState extends State<login> {
                   ),
                   SizedBox(height: 20),
                   TextField(
-                    controller: passwordController,
                     obscureText: _isObscured,
                     decoration: InputDecoration(
                       labelText: "Password",
@@ -81,7 +62,7 @@ class _loginState extends State<login> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  ElevatedButton(onPressed: loginUser, child: Text("Login")),
+                  ElevatedButton(onPressed: () {}, child: Text("Login")),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

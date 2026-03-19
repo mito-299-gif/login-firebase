@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class register extends StatefulWidget {
@@ -10,22 +9,6 @@ class register extends StatefulWidget {
 
 class _registerState extends State<register> {
   bool _isObscured = true;
-  bool isLoading = false;
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  Future<void> registerUser() async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("ລົງທະບຽນສໍາເລັດ")));
-      Navigator.pop(context);
-    } catch (e) {}
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +39,6 @@ class _registerState extends State<register> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: TextField(
-                      controller: emailController,
                       decoration: InputDecoration(
                         labelText: "Email",
                         border: OutlineInputBorder(
@@ -71,7 +53,7 @@ class _registerState extends State<register> {
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: TextField(
                       obscureText: _isObscured,
-                      controller: passwordController,
+
                       decoration: InputDecoration(
                         labelText: "Password",
                         border: OutlineInputBorder(
@@ -94,26 +76,20 @@ class _registerState extends State<register> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  isLoading
-                      ? CircularProgressIndicator()
-                      : ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(
-                              255,
-                              176,
-                              255,
-                              247,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                          onPressed: registerUser,
-                          child: Text(
-                            " ລົງທະບຽນ ",
-                            style: TextStyle(fontFamily: 'NotoSans'),
-                          ),
-                        ),
+
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 176, 255, 247),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      " ລົງທະບຽນ ",
+                      style: TextStyle(fontFamily: 'NotoSans'),
+                    ),
+                  ),
                 ],
               ),
             ),
